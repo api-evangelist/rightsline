@@ -9,7 +9,6 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
   - Rights Management
 url: >-
   https://raw.githubusercontent.com/api-evangelist/rightsline/refs/heads/main/apis.yml
@@ -27,8 +26,7 @@ apis:
       HTTP clients. JSON will be returned in all responses from the API, including
       errors.
     humanURL: https://api-docs.rightsline.com/
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: https://api-docs.rightsline.com/
