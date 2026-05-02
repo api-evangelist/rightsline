@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://app.rightsline.com/v4/availability?contentId=CONTENT-12345&territory=US&platform=SVOD&startDate=2026-06-01&endDate=2026-12-31",
+    "headers": {
+      "Authorization": "Bearer RIGHTSLINE_API_TOKEN_HERE"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "contentId": "CONTENT-12345",
+      "available": true,
+      "territory": "US",
+      "platform": "SVOD",
+      "windows": [
+        {
+          "startDate": "2026-01-01",
+          "endDate": "2026-12-31",
+          "platform": "SVOD",
+          "exclusive": false
+        }
+      ]
+    }
+  }
+}

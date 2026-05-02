@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "rl": "https://rightsline.com/vocab#",
+    "rights": "https://rightsline.com/vocab/rights#",
+    "royalties": "https://rightsline.com/vocab/royalties#",
+
+    "Right": "rl:Right",
+    "Royalty": "rl:Royalty",
+    "AvailabilityWindow": "rl:AvailabilityWindow",
+    "Contact": "rl:Contact",
+    "CatalogEntry": "rl:CatalogEntry",
+    "AuditEntry": "rl:AuditEntry",
+
+    "contentId": "rl:contentId",
+    "licensor": "rl:licensor",
+    "licensee": "rl:licensee",
+    "territory": "rl:territory",
+    "platform": "rl:platform",
+    "rightStatus": "rl:rightStatus",
+
+    "royaltyType": "rl:royaltyType",
+    "amount": "rl:amount",
+    "currency": "rl:currency",
+    "period": "rl:period",
+    "royaltyStatus": "rl:royaltyStatus",
+
+    "available": "rl:available",
+    "exclusive": "rl:exclusive",
+    "windows": "rl:windows",
+
+    "entityType": "rl:entityType",
+    "oldValue": "rl:oldValue",
+    "newValue": "rl:newValue",
+    "changedBy": "rl:changedBy",
+    "changedAt": "rl:changedAt",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "identifier": "schema:identifier",
+    "startDate": "schema:startDate",
+    "endDate": "schema:endDate",
+    "dateCreated": "schema:dateCreated",
+    "dateModified": "schema:dateModified",
+    "email": "schema:email",
+    "telephone": "schema:telephone"
+  }
+}

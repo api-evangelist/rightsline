@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://app.rightsline.com/v4/rights?limit=10&offset=0",
+    "headers": {
+      "Authorization": "Bearer RIGHTSLINE_API_TOKEN_HERE"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "RIGHT-001",
+          "contentId": "CONTENT-12345",
+          "licensor": "Studio Productions Inc",
+          "licensee": "StreamingService Co",
+          "territory": "US",
+          "platform": "SVOD",
+          "startDate": "2026-01-01",
+          "endDate": "2026-12-31",
+          "status": "Active",
+          "createdAt": "2025-11-15T09:00:00Z",
+          "modifiedAt": "2025-12-01T14:30:00Z"
+        },
+        {
+          "id": "RIGHT-002",
+          "contentId": "CONTENT-67890",
+          "licensor": "Independent Films Ltd",
+          "licensee": "StreamingService Co",
+          "territory": "EU",
+          "platform": "TVOD",
+          "startDate": "2026-03-01",
+          "endDate": "2027-02-28",
+          "status": "Active",
+          "createdAt": "2025-12-10T11:00:00Z",
+          "modifiedAt": "2026-01-05T08:15:00Z"
+        }
+      ],
+      "pagination": {
+        "total": 142,
+        "limit": 10,
+        "offset": 0
+      }
+    }
+  }
+}

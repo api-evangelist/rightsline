@@ -1,0 +1,138 @@
+name: Rightsline Vocabulary
+description: >-
+  Vocabulary and taxonomy for the Rightsline rights and royalties management
+  platform APIs covering rights licensing, availability, royalties, and
+  content distribution workflows.
+version: '1.0'
+created: '2026-05-02'
+modified: '2026-05-02'
+terms:
+  - term: Rights
+    definition: >-
+      A legal grant allowing a licensee to distribute, broadcast, or otherwise
+      exploit a piece of content within a defined territory, platform, and
+      time window.
+    synonyms: [license, rights grant, distribution rights]
+    relatedTerms: [licensor, licensee, territory, platform, rights window]
+
+  - term: Licensor
+    definition: >-
+      The rights holder (studio, distributor, or content owner) who grants
+      rights to a licensee.
+    synonyms: [rights holder, content owner, grantor]
+    relatedTerms: [rights, licensee, royalties]
+
+  - term: Licensee
+    definition: >-
+      The party receiving rights from a licensor, typically a streaming
+      platform, broadcaster, or distributor.
+    synonyms: [rights recipient, distributor, broadcaster]
+    relatedTerms: [rights, licensor]
+
+  - term: Territory
+    definition: >-
+      The geographic region or market where a licensee has the right to
+      distribute content. Examples: US, EU, Worldwide, APAC.
+    synonyms: [region, market, territory code]
+    relatedTerms: [rights, availability, platform]
+
+  - term: Platform
+    definition: >-
+      The distribution channel or medium for content, such as SVOD
+      (Subscription Video on Demand), TVOD (Transactional VOD),
+      EST (Electronic Sell-Through), Theatrical, Broadcast, or Free TV.
+    synonyms: [media type, distribution channel, windowing platform]
+    relatedTerms: [rights, territory, windowing]
+
+  - term: Rights Window
+    definition: >-
+      The defined time period (start date to end date) during which a licensee
+      has the right to exploit content on a specific platform and territory.
+    synonyms: [license window, exploitation window]
+    relatedTerms: [rights, availability, territory, platform]
+
+  - term: Availability
+    definition: >-
+      The validated state of whether content can be distributed on a given
+      platform and territory during a specified time window based on active rights.
+    synonyms: [content availability, rights clearance]
+    relatedTerms: [rights, territory, platform, rights window]
+
+  - term: Royalty
+    definition: >-
+      A payment owed to a rights holder based on revenue, sales, or usage
+      data for distributed content. Calculated per contract terms.
+    synonyms: [royalty payment, revenue share]
+    relatedTerms: [royalty statement, revenue, rights]
+
+  - term: Royalty Statement
+    definition: >-
+      A periodic accounting report showing royalties owed or paid for
+      content exploitation within a reporting period.
+    synonyms: [statement, accounting report]
+    relatedTerms: [royalty, revenue, period]
+
+  - term: Catalog
+    definition: >-
+      The master inventory of content titles and products tracked in
+      Rightsline, including films, series, episodes, and other media assets.
+    synonyms: [content catalog, product catalog, title library]
+    relatedTerms: [rights, royalty, content]
+
+  - term: Contact
+    definition: >-
+      A person or company record in the Rightsline platform representing
+      a licensor, licensee, vendor, or other business entity.
+    synonyms: [company, vendor, party]
+    relatedTerms: [rights, royalty, licensor, licensee]
+
+  - term: Workflow Action
+    definition: >-
+      An automated process in Rightsline triggered via the API, such as
+      generating a delivery request, creating a billing notice, or
+      producing a contract document.
+    synonyms: [automation, workflow step]
+    relatedTerms: [workflow, delivery request, billing]
+
+  - term: Delivery Request
+    definition: >-
+      An automated vendor request for content delivery, triggered when
+      rights conditions are met and distribution can commence.
+    synonyms: [content delivery, distribution request]
+    relatedTerms: [workflow, rights, availability]
+
+  - term: Audit Trail
+    definition: >-
+      A chronological record of all changes made to a rights, royalty,
+      or contact record, including the field changed, old value, new value,
+      and the user who made the change.
+    synonyms: [change history, audit log]
+    relatedTerms: [record, change management]
+
+  - term: Message Queue
+    definition: >-
+      An asynchronous messaging mechanism used by Rightsline Availability
+      Endpoints to notify integrated systems about rights changes and
+      availability updates in near-real-time.
+    synonyms: [availability feed, event queue]
+    relatedTerms: [availability, integration, webhook]
+
+  - term: Company API Key
+    definition: >-
+      A shared credential specific to a Rightsline environment (production,
+      staging, integration) used alongside user-level Access Keys to
+      authenticate API requests.
+    synonyms: [API key, environment key]
+    relatedTerms: [authentication, access key, secret access key]
+
+categories:
+  - name: Rights Management
+    terms: [Rights, Licensor, Licensee, Territory, Platform, Rights Window]
+  - name: Availability
+    terms: [Availability, Message Queue]
+  - name: Royalties and Finance
+    terms: [Royalty, Royalty Statement]
+  - name: Content and Contacts
+    terms: [Catalog, Contact]
+  - name: Operations
+    terms: [Workflow Action, Delivery Request, Audit Trail, Company API Key]

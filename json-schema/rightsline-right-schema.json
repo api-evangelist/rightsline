@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/rightsline/blob/main/json-schema/rightsline-right-schema.json",
+  "title": "Rightsline Right",
+  "description": "A rights or license record in the Rightsline platform",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique rights record identifier"
+    },
+    "contentId": {
+      "type": "string",
+      "description": "Associated content or catalog identifier"
+    },
+    "licensor": {
+      "type": "string",
+      "description": "Rights grantor (licensor)"
+    },
+    "licensee": {
+      "type": "string",
+      "description": "Rights recipient (licensee)"
+    },
+    "territory": {
+      "type": "string",
+      "description": "Territory or region for the rights grant",
+      "example": "US"
+    },
+    "platform": {
+      "type": "string",
+      "description": "Distribution platform",
+      "example": "SVOD"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Rights window start date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Rights window end date"
+    },
+    "status": {
+      "type": "string",
+      "description": "Rights record status",
+      "enum": ["Active", "Expired", "Pending", "Terminated"]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record creation timestamp"
+    },
+    "modifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp"
+    }
+  },
+  "required": ["id", "contentId", "territory"]
+}

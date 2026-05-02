@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/rightsline/blob/main/json-schema/rightsline-royalty-schema.json",
+  "title": "Rightsline Royalty",
+  "description": "A royalty or revenue record in the Rightsline platform",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique royalty record identifier"
+    },
+    "contentId": {
+      "type": "string",
+      "description": "Associated content identifier"
+    },
+    "type": {
+      "type": "string",
+      "description": "Revenue data type",
+      "enum": ["Revenue", "Sales", "Usage"]
+    },
+    "amount": {
+      "type": "number",
+      "format": "double",
+      "description": "Royalty amount",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217)",
+      "example": "USD",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "period": {
+      "type": "string",
+      "format": "date",
+      "description": "Reporting period"
+    },
+    "status": {
+      "type": "string",
+      "description": "Royalty record status",
+      "enum": ["Pending", "Approved", "Paid"]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record creation timestamp"
+    }
+  },
+  "required": ["id", "contentId", "type", "amount", "currency"]
+}

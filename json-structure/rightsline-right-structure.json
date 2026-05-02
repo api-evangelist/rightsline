@@ -1,0 +1,17 @@
+{
+  "name": "Rightsline Right",
+  "description": "Structure of a rights or license record in the Rightsline platform",
+  "fields": [
+    {"name": "id", "type": "string", "description": "Unique rights record identifier", "required": true},
+    {"name": "contentId", "type": "string", "description": "Associated content/catalog identifier", "required": true},
+    {"name": "licensor", "type": "string", "description": "Rights grantor"},
+    {"name": "licensee", "type": "string", "description": "Rights recipient"},
+    {"name": "territory", "type": "string", "description": "Territory/region for rights (e.g., US, EU, Worldwide)", "required": true},
+    {"name": "platform", "type": "string", "description": "Distribution platform (e.g., SVOD, TVOD, EST, Theatrical)"},
+    {"name": "startDate", "type": "date", "description": "Rights window start date"},
+    {"name": "endDate", "type": "date", "description": "Rights window end date"},
+    {"name": "status", "type": "enum", "values": ["Active", "Expired", "Pending", "Terminated"], "description": "Current rights status"},
+    {"name": "createdAt", "type": "datetime", "description": "Record creation timestamp"},
+    {"name": "modifiedAt", "type": "datetime", "description": "Last modification timestamp"}
+  ]
+}

@@ -1,0 +1,93 @@
+rules:
+  rightsline-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-zA-Z]* )*[A-Z][a-zA-Z]*$"
+
+  rightsline-operation-id-camel-case:
+    description: Operation IDs should be camelCase
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  rightsline-tags-title-case:
+    description: Tags must use Title Case
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].tags[*]"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]*$"
+
+  rightsline-must-have-authentication:
+    description: All operations must require authentication
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: security
+      function: defined
+
+  rightsline-get-must-have-200:
+    description: GET operations must return a 200 response
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: defined
+
+  rightsline-post-must-have-201:
+    description: POST create operations should return 201 Created
+    severity: warn
+    given: "$.paths[*].post"
+    then:
+      field: responses.201
+      function: defined
+
+  rightsline-delete-must-have-204:
+    description: DELETE operations should return 204 No Content
+    severity: warn
+    given: "$.paths[*].delete"
+    then:
+      field: responses.204
+      function: defined
+
+  rightsline-bulk-operations-max-100:
+    description: Bulk operation descriptions must note the 100 record limit
+    severity: info
+    given: "$.paths[*].post.description"
+    then:
+      function: pattern
+      functionOptions:
+        match: "100"
+
+  rightsline-path-params-required:
+    description: Path parameters must be required
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].parameters[?(@.in == 'path')]"
+    then:
+      field: required
+      function: truthy
+
+  rightsline-pagination-limit-parameter:
+    description: List endpoints should support limit parameter
+    severity: warn
+    given: "$.paths[*].get.parameters[?(@.name == 'limit')]"
+    then:
+      field: schema.maximum
+      function: defined
+
+  rightsline-servers-must-be-https:
+    description: All servers must use HTTPS
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"

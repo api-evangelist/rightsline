@@ -1,0 +1,236 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Rightsline Rights and Royalties Management"
+  description: >-
+    Unified capability for Rightsline rights and royalties management. Enables
+    rights licensing workflows, content availability checking, royalty tracking,
+    workflow automation, and audit trail access for media and entertainment
+    rights management teams.
+  tags:
+    - Availability
+    - Content Management
+    - Entertainment
+    - Media
+    - Rights Management
+    - Rightsline
+    - Royalties
+    - Workflows
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RIGHTSLINE_API_KEY: RIGHTSLINE_API_KEY
+
+capability:
+  consumes:
+    - import: rightsline-rights
+      location: ./shared/rights.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: rightsline-management-api
+      description: "Unified REST API for Rightsline rights, royalties, and availability management."
+      resources:
+        - path: /v1/rights
+          name: rights
+          description: "Rights and license management"
+          operations:
+            - method: GET
+              name: list-rights
+              description: "List rights and license records"
+              call: "rightsline-rights.list-rights"
+              with:
+                limit: "rest.limit"
+                offset: "rest.offset"
+                modifiedAfter: "rest.modifiedAfter"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/rights/{id}
+          name: right
+          description: "Individual rights record"
+          operations:
+            - method: GET
+              name: get-right
+              description: "Get rights record by ID"
+              call: "rightsline-rights.get-right"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PUT
+              name: update-right
+              description: "Update a rights record"
+              call: "rightsline-rights.update-right"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-right
+              description: "Delete a rights record"
+              call: "rightsline-rights.delete-right"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/availability
+          name: availability
+          description: "Content availability checking"
+          operations:
+            - method: GET
+              name: check-availability
+              description: "Validate content availability for a territory and platform"
+              call: "rightsline-rights.check-availability"
+              with:
+                contentId: "rest.contentId"
+                territory: "rest.territory"
+                platform: "rest.platform"
+                startDate: "rest.startDate"
+                endDate: "rest.endDate"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/workflows/{workflowId}/actions
+          name: workflow-actions
+          description: "Workflow automation"
+          operations:
+            - method: POST
+              name: execute-workflow-action
+              description: "Execute workflow action on records"
+              call: "rightsline-rights.execute-workflow-action"
+              with:
+                workflowId: "rest.workflowId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/audit/{recordId}
+          name: audit
+          description: "Audit trail"
+          operations:
+            - method: GET
+              name: get-audit-trail
+              description: "Get record change history"
+              call: "rightsline-rights.get-audit-trail"
+              with:
+                recordId: "rest.recordId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: rightsline-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted rights management and availability validation workflows."
+      tools:
+        - name: list-rights
+          description: "List rights and license records, optionally filtered by modification date"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rightsline-rights.list-rights"
+          with:
+            limit: "tools.limit"
+            offset: "tools.offset"
+            modifiedAfter: "tools.modifiedAfter"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-right
+          description: "Get full details of a rights or license record including territory and window"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rightsline-rights.get-right"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-right
+          description: "Create a new rights record for a content title, territory, and platform"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "rightsline-rights.create-right"
+          with:
+            contentId: "tools.contentId"
+            territory: "tools.territory"
+            platform: "tools.platform"
+            startDate: "tools.startDate"
+            endDate: "tools.endDate"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-right
+          description: "Update an existing rights record's terms, dates, or territory"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "rightsline-rights.update-right"
+          with:
+            id: "tools.id"
+            territory: "tools.territory"
+            platform: "tools.platform"
+            endDate: "tools.endDate"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-right
+          description: "Delete a rights record"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "rightsline-rights.delete-right"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: check-availability
+          description: "Check whether content is available for distribution in a territory and platform window"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rightsline-rights.check-availability"
+          with:
+            contentId: "tools.contentId"
+            territory: "tools.territory"
+            platform: "tools.platform"
+            startDate: "tools.startDate"
+            endDate: "tools.endDate"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: execute-workflow
+          description: "Execute a Rightsline workflow action on one or more records (e.g., generate delivery request)"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "rightsline-rights.execute-workflow-action"
+          with:
+            workflowId: "tools.workflowId"
+            recordIds: "tools.recordIds"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-audit-trail
+          description: "Get the change history and audit trail for a specific rights or royalty record"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rightsline-rights.get-audit-trail"
+          with:
+            recordId: "tools.recordId"
+          outputParameters:
+            - type: object
+              mapping: "$."
