@@ -1,0 +1,13 @@
+{
+  "repo": "rightsline",
+  "feeds": [
+    {
+      "source": "https://www.rightsline.com/resources/api-integration/",
+      "feed_url": "https://www.rightsline.com/feed/",
+      "saved": 10,
+      "title": "Rightsline"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:34:59Z"
+}
