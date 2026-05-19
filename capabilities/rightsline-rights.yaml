@@ -1,0 +1,287 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Rightsline API — Rights
+  description: 'Rightsline API — Rights. 6 operations. Lead operation: Get Audit Trail. Self-contained Naftiko capability
+    covering one Rightsline business surface.'
+  tags:
+  - Rightsline
+  - Rights
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RIGHTSLINE_API_KEY: RIGHTSLINE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rightsline-rights
+    baseUri: https://app.rightsline.com/v4
+    description: Rightsline API — Rights business capability. Self-contained, no shared references.
+    resources:
+    - name: audit-recordId
+      path: /audit/{recordId}
+      operations:
+      - name: getaudittrail
+        method: GET
+        description: Get Audit Trail
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: recordId
+          in: path
+          type: string
+          description: Record ID to retrieve audit history for
+          required: true
+    - name: rights
+      path: /rights
+      operations:
+      - name: listrights
+        method: GET
+        description: List Rights
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Number of records to return (max 100)
+        - name: offset
+          in: query
+          type: integer
+          description: Offset for pagination
+        - name: modifiedAfter
+          in: query
+          type: string
+          description: Filter records modified after this date (ISO 8601)
+      - name: createright
+        method: POST
+        description: Create Right
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: rights-id
+      path: /rights/{id}
+      operations:
+      - name: getright
+        method: GET
+        description: Get Right
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Rights record ID
+          required: true
+      - name: updateright
+        method: PUT
+        description: Update Right
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteright
+        method: DELETE
+        description: Delete Right
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.RIGHTSLINE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rightsline-rights-rest
+    port: 8080
+    description: REST adapter for Rightsline API — Rights. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/audit/{recordid}
+      name: audit-recordid
+      description: REST surface for audit-recordId.
+      operations:
+      - method: GET
+        name: getaudittrail
+        description: Get Audit Trail
+        call: rightsline-rights.getaudittrail
+        with:
+          recordId: rest.recordId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rights
+      name: rights
+      description: REST surface for rights.
+      operations:
+      - method: GET
+        name: listrights
+        description: List Rights
+        call: rightsline-rights.listrights
+        with:
+          limit: rest.limit
+          offset: rest.offset
+          modifiedAfter: rest.modifiedAfter
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createright
+        description: Create Right
+        call: rightsline-rights.createright
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rights/{id}
+      name: rights-id
+      description: REST surface for rights-id.
+      operations:
+      - method: GET
+        name: getright
+        description: Get Right
+        call: rightsline-rights.getright
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateright
+        description: Update Right
+        call: rightsline-rights.updateright
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteright
+        description: Delete Right
+        call: rightsline-rights.deleteright
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rightsline-rights-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Rightsline API — Rights. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-audit-trail
+      description: Get Audit Trail
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rightsline-rights.getaudittrail
+      with:
+        recordId: tools.recordId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-rights
+      description: List Rights
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rightsline-rights.listrights
+      with:
+        limit: tools.limit
+        offset: tools.offset
+        modifiedAfter: tools.modifiedAfter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-right
+      description: Create Right
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rightsline-rights.createright
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-right
+      description: Get Right
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rightsline-rights.getright
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-right
+      description: Update Right
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rightsline-rights.updateright
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-right
+      description: Delete Right
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rightsline-rights.deleteright
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
