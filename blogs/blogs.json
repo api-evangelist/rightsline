@@ -9,11 +9,11 @@
       "method": "feed"
     },
     {
-      "source": "https://www.rightsline.com/insights/",
+      "source": "https://www.rightsline.com/feed/",
       "feed_url": "https://www.rightsline.com/feed/",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "feed"
     },
     {
       "source": "https://api-docs.rightsline.com/getting-started",
@@ -24,5 +24,5 @@
     }
   ],
   "post_count": 10,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:03:07Z"
 }

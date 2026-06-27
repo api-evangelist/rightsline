@@ -91,7 +91,7 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/rightsline/refs/heads/main/json-ld/rightsline-context.jsonld
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/rightsline/refs/heads/main/vocabulary/rightsline-vocabulary.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://api-docs.rightsline.com/llms.txt
 maintainers:
   - FN: Kin Lane
