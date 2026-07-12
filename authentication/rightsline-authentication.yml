@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/rightsline-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Bearer token obtained by exchanging Company API Key + Access Key + Secret Access
+    Key. Generate credentials in app.rightsline.com Profile > API Access.
+  sources:
+  - openapi/rightsline-openapi.yml

@@ -55,6 +55,10 @@ apis:
       - type: PostmanWorkspace
         url: https://postman.rightsline.com/
 common:
+  - type: DomainSecurity
+    url: security/rightsline-domain-security.yml
+  - type: Authentication
+    url: authentication/rightsline-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/rightsline
   - type: LinkedIn
