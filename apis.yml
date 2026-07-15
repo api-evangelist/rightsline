@@ -55,6 +55,8 @@ apis:
       - type: PostmanWorkspace
         url: https://postman.rightsline.com/
 common:
+  - type: AgenticAccess
+    url: agentic-access/rightsline-agentic-access.yml
   - type: DomainSecurity
     url: security/rightsline-domain-security.yml
   - type: Authentication
