@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: Rightsline Availability Royalties API
+  description: The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.
+  version: v4
+  contact:
+    name: Rightsline API Documentation
+    url: https://api-docs.rightsline.com/
+  termsOfService: https://www.rightsline.com/terms-of-service/
+servers:
+- url: https://app.rightsline.com/v4
+  description: US Production
+- url: https://app.rightsline.eu/v4
+  description: EU Production
+tags:
+- name: Royalties
+  description: Royalty and revenue management
+paths:
+  /royalties:
+    get:
+      operationId: listRoyalties
+      summary: List Royalties
+      description: Returns a list of royalty records.
+      tags:
+      - Royalties
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      security:
+      - ApiKey: []
+      responses:
+        '200':
+          description: Royalty records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoyaltiesListResponse'
+    post:
+      operationId: createRoyalty
+      summary: Create Royalty
+      description: Creates a new royalty record. Supports bulk creation of up to 100 records.
+      tags:
+      - Royalties
+      security:
+      - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoyaltyCreate'
+      responses:
+        '201':
+          description: Royalty created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Royalty'
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    Royalty:
+      type: object
+      description: A royalty record for revenue tracking
+      properties:
+        id:
+          type: string
+        contentId:
+          type: string
+        type:
+          type: string
+          enum:
+          - Revenue
+          - Sales
+          - Usage
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        period:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - Pending
+          - Approved
+          - Paid
+        createdAt:
+          type: string
+          format: date-time
+    RoyaltiesListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Royalty'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    RoyaltyCreate:
+      type: object
+      properties:
+        contentId:
+          type: string
+        type:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        period:
+          type: string
+          format: date
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Bearer token obtained by exchanging Company API Key + Access Key + Secret Access Key. Generate credentials in app.rightsline.com Profile > API Access.

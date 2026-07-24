@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: Rightsline Availability Templates API
+  description: The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.
+  version: v4
+  contact:
+    name: Rightsline API Documentation
+    url: https://api-docs.rightsline.com/
+  termsOfService: https://www.rightsline.com/terms-of-service/
+servers:
+- url: https://app.rightsline.com/v4
+  description: US Production
+- url: https://app.rightsline.eu/v4
+  description: EU Production
+tags:
+- name: Templates
+  description: Template configuration
+paths:
+  /templates/{entityType}:
+    get:
+      operationId: listTemplates
+      summary: List Templates
+      description: Retrieve draft templates for a given entity type.
+      tags:
+      - Templates
+      parameters:
+      - name: entityType
+        in: path
+        required: true
+        description: Entity type (e.g., rights, royalties, contacts)
+        schema:
+          type: string
+      security:
+      - ApiKey: []
+      responses:
+        '200':
+          description: Template list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+  /templates/{entityType}/{templateId}:
+    get:
+      operationId: getTemplate
+      summary: Get Template
+      description: Retrieve a specific template by ID with parent/child relationships and party data.
+      tags:
+      - Templates
+      parameters:
+      - name: entityType
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: templateId
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - ApiKey: []
+      responses:
+        '200':
+          description: Template detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+components:
+  schemas:
+    Template:
+      type: object
+      description: A rights or royalty template
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        entityType:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              required:
+                type: boolean
+        parentTemplateId:
+          type: string
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Bearer token obtained by exchanging Company API Key + Access Key + Secret Access Key. Generate credentials in app.rightsline.com Profile > API Access.

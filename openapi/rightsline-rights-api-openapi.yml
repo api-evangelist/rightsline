@@ -1,0 +1,286 @@
+openapi: 3.0.3
+info:
+  title: Rightsline Availability Rights API
+  description: The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.
+  version: v4
+  contact:
+    name: Rightsline API Documentation
+    url: https://api-docs.rightsline.com/
+  termsOfService: https://www.rightsline.com/terms-of-service/
+servers:
+- url: https://app.rightsline.com/v4
+  description: US Production
+- url: https://app.rightsline.eu/v4
+  description: EU Production
+tags:
+- name: Rights
+  description: Rights and license management
+paths:
+  /rights:
+    get:
+      operationId: listRights
+      summary: List Rights
+      description: Returns a list of rights records. Supports filtering and pagination. Returns up to 100 records per request.
+      tags:
+      - Rights
+      parameters:
+      - name: limit
+        in: query
+        description: Number of records to return (max 100)
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+      - name: offset
+        in: query
+        description: Offset for pagination
+        schema:
+          type: integer
+          default: 0
+      - name: modifiedAfter
+        in: query
+        description: Filter records modified after this date (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      security:
+      - ApiKey: []
+      responses:
+        '200':
+          description: List of rights records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RightsListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createRight
+      summary: Create Right
+      description: Creates a new rights record. Supports bulk creation of up to 100 records.
+      tags:
+      - Rights
+      security:
+      - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RightCreate'
+      responses:
+        '201':
+          description: Right created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Right'
+        '400':
+          description: Bad request
+  /rights/{id}:
+    get:
+      operationId: getRight
+      summary: Get Right
+      description: Returns a specific rights record by ID.
+      tags:
+      - Rights
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Rights record ID
+        schema:
+          type: string
+      security:
+      - ApiKey: []
+      responses:
+        '200':
+          description: Rights record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Right'
+        '404':
+          description: Not found
+    put:
+      operationId: updateRight
+      summary: Update Right
+      description: Updates an existing rights record.
+      tags:
+      - Rights
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RightCreate'
+      responses:
+        '200':
+          description: Updated right
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Right'
+    delete:
+      operationId: deleteRight
+      summary: Delete Right
+      description: Deletes a rights record.
+      tags:
+      - Rights
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - ApiKey: []
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Not found
+  /audit/{recordId}:
+    get:
+      operationId: getAuditTrail
+      summary: Get Audit Trail
+      description: Retrieve historical change logs for any record including specific value modifications.
+      tags:
+      - Rights
+      parameters:
+      - name: recordId
+        in: path
+        required: true
+        description: Record ID to retrieve audit history for
+        schema:
+          type: string
+      security:
+      - ApiKey: []
+      responses:
+        '200':
+          description: Audit trail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AuditEntry'
+components:
+  schemas:
+    Right:
+      type: object
+      description: A rights record representing a license or rights grant
+      properties:
+        id:
+          type: string
+          description: Unique rights record identifier
+        contentId:
+          type: string
+          description: Associated content/catalog ID
+        licensor:
+          type: string
+          description: Rights grantor
+        licensee:
+          type: string
+          description: Rights recipient
+        territory:
+          type: string
+          description: Territory/region for rights grant
+        platform:
+          type: string
+          description: Distribution platform
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - Active
+          - Expired
+          - Pending
+          - Terminated
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+    AuditEntry:
+      type: object
+      description: An audit trail entry for record changes
+      properties:
+        id:
+          type: string
+        recordId:
+          type: string
+        field:
+          type: string
+        oldValue:
+          type: string
+        newValue:
+          type: string
+        changedBy:
+          type: string
+        changedAt:
+          type: string
+          format: date-time
+    RightsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Right'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    RightCreate:
+      type: object
+      required:
+      - contentId
+      - territory
+      properties:
+        contentId:
+          type: string
+        licensor:
+          type: string
+        licensee:
+          type: string
+        territory:
+          type: string
+        platform:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Bearer token obtained by exchanging Company API Key + Access Key + Secret Access Key. Generate credentials in app.rightsline.com Profile > API Access.

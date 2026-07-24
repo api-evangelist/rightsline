@@ -1,0 +1,99 @@
+openapi: 3.0.3
+info:
+  title: Rightsline Availability API
+  description: The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.
+  version: v4
+  contact:
+    name: Rightsline API Documentation
+    url: https://api-docs.rightsline.com/
+  termsOfService: https://www.rightsline.com/terms-of-service/
+servers:
+- url: https://app.rightsline.com/v4
+  description: US Production
+- url: https://app.rightsline.eu/v4
+  description: EU Production
+tags:
+- name: Availability
+  description: Content availability and windowing
+paths:
+  /availability:
+    get:
+      operationId: checkAvailability
+      summary: Check Availability
+      description: Validates content availability for scheduling, sales, and publishing workflows. Checks rights windows for a given territory, platform, and time period.
+      tags:
+      - Availability
+      parameters:
+      - name: contentId
+        in: query
+        required: true
+        description: Content identifier
+        schema:
+          type: string
+      - name: territory
+        in: query
+        description: Territory code (ISO 3166-1 alpha-2)
+        schema:
+          type: string
+      - name: platform
+        in: query
+        description: Distribution platform
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: Start date for availability window check
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        description: End date for availability window check
+        schema:
+          type: string
+          format: date
+      security:
+      - ApiKey: []
+      responses:
+        '200':
+          description: Availability result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailabilityResult'
+components:
+  schemas:
+    AvailabilityResult:
+      type: object
+      description: Content availability check result
+      properties:
+        contentId:
+          type: string
+        available:
+          type: boolean
+        territory:
+          type: string
+        platform:
+          type: string
+        windows:
+          type: array
+          description: Rights windows applicable for the query
+          items:
+            type: object
+            properties:
+              startDate:
+                type: string
+                format: date
+              endDate:
+                type: string
+                format: date
+              platform:
+                type: string
+              exclusive:
+                type: boolean
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Bearer token obtained by exchanging Company API Key + Access Key + Secret Access Key. Generate credentials in app.rightsline.com Profile > API Access.

@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: Rightsline Availability Workflows API
+  description: The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.
+  version: v4
+  contact:
+    name: Rightsline API Documentation
+    url: https://api-docs.rightsline.com/
+  termsOfService: https://www.rightsline.com/terms-of-service/
+servers:
+- url: https://app.rightsline.com/v4
+  description: US Production
+- url: https://app.rightsline.eu/v4
+  description: EU Production
+tags:
+- name: Workflows
+  description: Workflow automation and actions
+paths:
+  /workflows/{workflowId}/actions:
+    post:
+      operationId: executeWorkflowAction
+      summary: Execute Workflow Action
+      description: Executes a workflow action on up to 100 records, including document generation and delivery request automation.
+      tags:
+      - Workflows
+      parameters:
+      - name: workflowId
+        in: path
+        required: true
+        description: Workflow identifier
+        schema:
+          type: string
+      security:
+      - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recordIds:
+                  type: array
+                  description: List of record IDs (max 100)
+                  items:
+                    type: string
+                  maxItems: 100
+                actionData:
+                  type: object
+                  description: Additional action parameters
+      responses:
+        '200':
+          description: Workflow action executed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+components:
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Bearer token obtained by exchanging Company API Key + Access Key + Secret Access Key. Generate credentials in app.rightsline.com Profile > API Access.

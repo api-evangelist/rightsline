@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Rightsline Availability Lists API
+  description: The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.
+  version: v4
+  contact:
+    name: Rightsline API Documentation
+    url: https://api-docs.rightsline.com/
+  termsOfService: https://www.rightsline.com/terms-of-service/
+servers:
+- url: https://app.rightsline.com/v4
+  description: US Production
+- url: https://app.rightsline.eu/v4
+  description: EU Production
+tags:
+- name: Lists
+  description: Master and pick list management
+paths:
+  /lists/{listId}/values:
+    post:
+      operationId: addListValue
+      summary: Add List Value
+      description: Add values to a master or pick list.
+      tags:
+      - Lists
+      parameters:
+      - name: listId
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Values added
+    delete:
+      operationId: removeListValue
+      summary: Remove List Value
+      description: Remove values from a master or pick list.
+      tags:
+      - Lists
+      parameters:
+      - name: listId
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '204':
+          description: Values removed
+components:
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Bearer token obtained by exchanging Company API Key + Access Key + Secret Access Key. Generate credentials in app.rightsline.com Profile > API Access.
