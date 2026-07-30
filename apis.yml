@@ -5,7 +5,20 @@ description: >-
   REST API enables real-time integration of contacts, product catalogs, revenue data, and workflow automation for rights
   tracking, availability, royalty calculations, and vendor delivery across the content lifecycle.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rightsline.png
 tags:
   - Content Management
   - Entertainment
@@ -17,43 +30,124 @@ created: '2025-02-08'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: rightsline:rights-api
-    name: Rightsline Rights API
-    description: >-
-      RESTful API for managing rights, licenses, and availability data. Supports creation, retrieval, modification, and
-      deletion of up to 100 records per request. Enables automation of rights tracking, availability validation, vendor
-      delivery requests, and workflow actions.
-    humanURL: https://api-docs.rightsline.com/
-    baseURL: https://app.rightsline.com/v4
-    tags:
-      - Availability
-      - Content
-      - Rights Management
-      - Workflows
-    properties:
-      - type: Documentation
-        url: https://api-docs.rightsline.com/
-      - type: PostmanWorkspace
-        url: https://postman.rightsline.com/
-      - type: Authentication
-        url: https://api-docs.rightsline.com/authentication/user-permissions
-  - aid: rightsline:royalties-api
-    name: Rightsline Royalties API
-    description: >-
-      RESTful API for managing royalties, revenue data, and financial workflows. Supports bulk loading of revenue,
-      sales, and usage data. Enables automation of finance billing requests and royalty calculations.
-    humanURL: https://api-docs.rightsline.com/
-    baseURL: https://app.rightsline.com/v4
-    tags:
-      - Billing
-      - Finance
-      - Revenue
-      - Royalties
-    properties:
-      - type: Documentation
-        url: https://api-docs.rightsline.com/
-      - type: PostmanWorkspace
-        url: https://postman.rightsline.com/
+- aid: rightsline:rights-api
+  name: Rightsline Rights API
+  description: >-
+    RESTful API for managing rights, licenses, and availability data. Supports creation, retrieval, modification,
+    and deletion of up to 100 records per request. Enables automation of rights tracking, availability
+    validation, vendor delivery requests, and workflow actions.
+  humanURL: https://api-docs.rightsline.com/
+  baseURL: https://app.rightsline.com/v4
+  tags:
+  - Availability
+  - Content
+  - Rights Management
+  - Workflows
+  properties:
+  - type: Documentation
+    url: https://api-docs.rightsline.com/
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/rightsline/overview
+
+  - type: Authentication
+    url: https://api-docs.rightsline.com/authentication/user-permissions
+- aid: rightsline:royalties-api
+  name: Rightsline Royalties API
+  description: >-
+    RESTful API for managing royalties, revenue data, and financial workflows. Supports bulk loading of
+    revenue, sales, and usage data. Enables automation of finance billing requests and royalty calculations.
+  humanURL: https://api-docs.rightsline.com/
+  baseURL: https://app.rightsline.com/v4
+  tags:
+  - Billing
+  - Finance
+  - Revenue
+  - Royalties
+  properties:
+  - type: Documentation
+    url: https://api-docs.rightsline.com/
+  - type: PostmanWorkspace
+    url: https://postman.rightsline.com/
+- aid: rightsline:rightsline-availability-api
+  name: Rightsline Availability API
+  description: Content availability and windowing
+  humanURL: https://api-docs.rightsline.com/
+  baseURL: https://app.rightsline.com/v4
+  tags:
+  - Availability
+  properties:
+  - type: OpenAPI
+    url: openapi/rightsline-availability-api-openapi.yml
+- aid: rightsline:rightsline-catalog-api
+  name: Rightsline Catalog API
+  description: Content catalog and product management
+  humanURL: https://api-docs.rightsline.com/
+  baseURL: https://app.rightsline.com/v4
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/rightsline-catalog-api-openapi.yml
+- aid: rightsline:rightsline-contacts-api
+  name: Rightsline Contacts API
+  description: Contact and company management
+  humanURL: https://api-docs.rightsline.com/
+  baseURL: https://app.rightsline.com/v4
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/rightsline-contacts-api-openapi.yml
+- aid: rightsline:rightsline-lists-api
+  name: Rightsline Lists API
+  description: Master and pick list management
+  humanURL: https://api-docs.rightsline.com/
+  baseURL: https://app.rightsline.com/v4
+  tags:
+  - Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/rightsline-lists-api-openapi.yml
+- aid: rightsline:rightsline-rights-api
+  name: Rightsline Rights API
+  description: Rights and license management
+  humanURL: https://api-docs.rightsline.com/
+  baseURL: https://app.rightsline.com/v4
+  tags:
+  - Rights
+  properties:
+  - type: OpenAPI
+    url: openapi/rightsline-rights-api-openapi.yml
+- aid: rightsline:rightsline-royalties-api
+  name: Rightsline Royalties API
+  description: Royalty and revenue management
+  humanURL: https://api-docs.rightsline.com/
+  baseURL: https://app.rightsline.com/v4
+  tags:
+  - Royalties
+  properties:
+  - type: OpenAPI
+    url: openapi/rightsline-royalties-api-openapi.yml
+- aid: rightsline:rightsline-templates-api
+  name: Rightsline Templates API
+  description: Template configuration
+  humanURL: https://api-docs.rightsline.com/
+  baseURL: https://app.rightsline.com/v4
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/rightsline-templates-api-openapi.yml
+- aid: rightsline:rightsline-workflows-api
+  name: Rightsline Workflows API
+  description: Workflow automation and actions
+  humanURL: https://api-docs.rightsline.com/
+  baseURL: https://app.rightsline.com/v4
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/rightsline-workflows-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/rightsline-agentic-access.yml
