@@ -1,0 +1,28 @@
+{
+  "provider": "rightsline",
+  "sources": [
+    "rightsline-availability-api-openapi.yml",
+    "rightsline-catalog-api-openapi.yml",
+    "rightsline-contacts-api-openapi.yml",
+    "rightsline-lists-api-openapi.yml",
+    "rightsline-rights-api-openapi.yml",
+    "rightsline-royalties-api-openapi.yml",
+    "rightsline-templates-api-openapi.yml",
+    "rightsline-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "rightsline-availability-api-openapi.yml",
+    "rightsline-catalog-api-openapi.yml",
+    "rightsline-contacts-api-openapi.yml",
+    "rightsline-lists-api-openapi.yml",
+    "rightsline-rights-api-openapi.yml",
+    "rightsline-royalties-api-openapi.yml",
+    "rightsline-templates-api-openapi.yml",
+    "rightsline-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

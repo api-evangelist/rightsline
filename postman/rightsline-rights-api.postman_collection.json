@@ -1,0 +1,925 @@
+{
+  "info": {
+    "_postman_id": "a59a1e9c-4470-4565-a0a0-cce1cea3d435",
+    "name": "Rightsline Availability Rights API",
+    "description": "The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.\n\nContact Support:\n Name: Rightsline API Documentation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:47:43.000Z",
+    "updatedAt": "2026-07-28T02:47:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a59a1e9c-4470-4565-a0a0-cce1cea3d435"
+  },
+  "item": [
+    {
+      "name": "rights",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get Right",
+              "id": "46cd6865-a224-4d50-b7cf-711b22eeaebf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rights/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rights",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c81b9699-4672-4c0e-9b89-814c104ccdc8",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Rights record ID"
+                    }
+                  ]
+                },
+                "description": "Returns a specific rights record by ID."
+              },
+              "response": [
+                {
+                  "id": "5a96fdf4-4215-47bd-be78-415ae1e78f33",
+                  "name": "Rights record",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rights/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rights",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"contentId\": \"<string>\",\n  \"licensor\": \"<string>\",\n  \"licensee\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"platform\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"status\": \"Active\",\n  \"createdAt\": \"<dateTime>\",\n  \"modifiedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:47:43.000Z",
+                  "updatedAt": "2026-07-28T02:47:43.000Z",
+                  "uid": "35240-5a96fdf4-4215-47bd-be78-415ae1e78f33"
+                },
+                {
+                  "id": "3cc8655d-dd08-4cb5-95a0-7d0b732b5b9b",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rights/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rights",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:47:43.000Z",
+                  "updatedAt": "2026-07-28T02:47:43.000Z",
+                  "uid": "35240-3cc8655d-dd08-4cb5-95a0-7d0b732b5b9b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:47:43.000Z",
+              "updatedAt": "2026-07-28T02:47:43.000Z",
+              "uid": "35240-46cd6865-a224-4d50-b7cf-711b22eeaebf"
+            },
+            {
+              "name": "Update Right",
+              "id": "cb1331db-ec56-4da1-b164-a8991daf1993",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentId\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"licensor\": \"<string>\",\n  \"licensee\": \"<string>\",\n  \"platform\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rights/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rights",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "816ef398-9697-471a-a8c0-51d683f9582d",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Updates an existing rights record."
+              },
+              "response": [
+                {
+                  "id": "f682bc6c-e335-4f2d-9222-8d5da08c9917",
+                  "name": "Updated right",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"contentId\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"licensor\": \"<string>\",\n  \"licensee\": \"<string>\",\n  \"platform\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/rights/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rights",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"contentId\": \"<string>\",\n  \"licensor\": \"<string>\",\n  \"licensee\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"platform\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"status\": \"Active\",\n  \"createdAt\": \"<dateTime>\",\n  \"modifiedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:47:43.000Z",
+                  "updatedAt": "2026-07-28T02:47:43.000Z",
+                  "uid": "35240-f682bc6c-e335-4f2d-9222-8d5da08c9917"
+                }
+              ],
+              "createdAt": "2026-07-28T02:47:43.000Z",
+              "updatedAt": "2026-07-28T02:47:43.000Z",
+              "uid": "35240-cb1331db-ec56-4da1-b164-a8991daf1993"
+            },
+            {
+              "name": "Delete Right",
+              "id": "6754da8d-ef6d-4ff1-b8d5-ff9e5297edca",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/rights/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rights",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b72eb748-952b-4562-95f7-7f689a62a991",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Deletes a rights record."
+              },
+              "response": [
+                {
+                  "id": "0dea23f0-b678-4bff-846f-ddea27224234",
+                  "name": "Deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rights/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rights",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:47:43.000Z",
+                  "updatedAt": "2026-07-28T02:47:43.000Z",
+                  "uid": "35240-0dea23f0-b678-4bff-846f-ddea27224234"
+                },
+                {
+                  "id": "7cbdbc9d-34fb-420d-8dd6-5005f43f3d02",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rights/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rights",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:47:43.000Z",
+                  "updatedAt": "2026-07-28T02:47:43.000Z",
+                  "uid": "35240-7cbdbc9d-34fb-420d-8dd6-5005f43f3d02"
+                }
+              ],
+              "createdAt": "2026-07-28T02:47:43.000Z",
+              "updatedAt": "2026-07-28T02:47:43.000Z",
+              "uid": "35240-6754da8d-ef6d-4ff1-b8d5-ff9e5297edca"
+            }
+          ],
+          "id": "5154cf6a-e2f7-40e7-a595-e9f1e71ffe23",
+          "createdAt": "2026-07-28T02:47:43.000Z",
+          "updatedAt": "2026-07-28T02:47:43.000Z",
+          "uid": "35240-5154cf6a-e2f7-40e7-a595-e9f1e71ffe23"
+        },
+        {
+          "name": "List Rights",
+          "id": "51672d67-bca3-4d65-a722-0aaddf0aede9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rights?limit=25&offset=0&modifiedAfter=<dateTime>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rights"
+              ],
+              "query": [
+                {
+                  "description": "Number of records to return (max 100)",
+                  "key": "limit",
+                  "value": "25"
+                },
+                {
+                  "description": "Offset for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Filter records modified after this date (ISO 8601)",
+                  "key": "modifiedAfter",
+                  "value": "<dateTime>"
+                }
+              ]
+            },
+            "description": "Returns a list of rights records. Supports filtering and pagination. Returns up to 100 records per request."
+          },
+          "response": [
+            {
+              "id": "6edf0602-76cc-4ada-914d-5502bc9a0503",
+              "name": "List of rights records",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rights?limit=25&offset=0&modifiedAfter=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rights"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of records to return (max 100)",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter records modified after this date (ISO 8601)",
+                      "key": "modifiedAfter",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"contentId\": \"<string>\",\n      \"licensor\": \"<string>\",\n      \"licensee\": \"<string>\",\n      \"territory\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"status\": \"Pending\",\n      \"createdAt\": \"<dateTime>\",\n      \"modifiedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"contentId\": \"<string>\",\n      \"licensor\": \"<string>\",\n      \"licensee\": \"<string>\",\n      \"territory\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"status\": \"Active\",\n      \"createdAt\": \"<dateTime>\",\n      \"modifiedAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:43.000Z",
+              "updatedAt": "2026-07-28T02:47:43.000Z",
+              "uid": "35240-6edf0602-76cc-4ada-914d-5502bc9a0503"
+            },
+            {
+              "id": "6e4a0409-3a23-4f51-8597-95bb52d60142",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rights?limit=25&offset=0&modifiedAfter=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rights"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of records to return (max 100)",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter records modified after this date (ISO 8601)",
+                      "key": "modifiedAfter",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:47:43.000Z",
+              "updatedAt": "2026-07-28T02:47:43.000Z",
+              "uid": "35240-6e4a0409-3a23-4f51-8597-95bb52d60142"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:43.000Z",
+          "updatedAt": "2026-07-28T02:47:43.000Z",
+          "uid": "35240-51672d67-bca3-4d65-a722-0aaddf0aede9"
+        },
+        {
+          "name": "Create Right",
+          "id": "6118f579-9932-477d-b8f6-c8885a857db6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contentId\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"licensor\": \"<string>\",\n  \"licensee\": \"<string>\",\n  \"platform\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rights",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rights"
+              ]
+            },
+            "description": "Creates a new rights record. Supports bulk creation of up to 100 records."
+          },
+          "response": [
+            {
+              "id": "d527b85a-8920-4493-885d-86efa0e56bcb",
+              "name": "Right created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentId\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"licensor\": \"<string>\",\n  \"licensee\": \"<string>\",\n  \"platform\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rights",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rights"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"contentId\": \"<string>\",\n  \"licensor\": \"<string>\",\n  \"licensee\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"platform\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"status\": \"Active\",\n  \"createdAt\": \"<dateTime>\",\n  \"modifiedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T02:47:43.000Z",
+              "updatedAt": "2026-07-28T02:47:43.000Z",
+              "uid": "35240-d527b85a-8920-4493-885d-86efa0e56bcb"
+            },
+            {
+              "id": "dcdeef70-03ef-4ec0-b672-10f5c0697885",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentId\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"licensor\": \"<string>\",\n  \"licensee\": \"<string>\",\n  \"platform\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/rights",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rights"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:47:43.000Z",
+              "updatedAt": "2026-07-28T02:47:43.000Z",
+              "uid": "35240-dcdeef70-03ef-4ec0-b672-10f5c0697885"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:43.000Z",
+          "updatedAt": "2026-07-28T02:47:43.000Z",
+          "uid": "35240-6118f579-9932-477d-b8f6-c8885a857db6"
+        }
+      ],
+      "id": "85ef532b-8e9a-41e0-be09-7a05db10f7d6",
+      "createdAt": "2026-07-28T02:47:43.000Z",
+      "updatedAt": "2026-07-28T02:47:43.000Z",
+      "uid": "35240-85ef532b-8e9a-41e0-be09-7a05db10f7d6"
+    },
+    {
+      "name": "audit",
+      "item": [
+        {
+          "name": "{recordId}",
+          "item": [
+            {
+              "name": "Get Audit Trail",
+              "id": "2a8d95f6-0fac-4e59-a31f-0e7d0418ed22",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/audit/:recordId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "audit",
+                    ":recordId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9d9dbf29-a6db-4d1f-88a2-9eb95717a21d",
+                      "key": "recordId",
+                      "value": "<string>",
+                      "description": "(Required) Record ID to retrieve audit history for"
+                    }
+                  ]
+                },
+                "description": "Retrieve historical change logs for any record including specific value modifications."
+              },
+              "response": [
+                {
+                  "id": "08275d69-5de7-4710-a915-a7d320d61472",
+                  "name": "Audit trail",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/audit/:recordId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "audit",
+                        ":recordId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recordId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"entries\": [\n    {\n      \"id\": \"<string>\",\n      \"recordId\": \"<string>\",\n      \"field\": \"<string>\",\n      \"oldValue\": \"<string>\",\n      \"newValue\": \"<string>\",\n      \"changedBy\": \"<string>\",\n      \"changedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"recordId\": \"<string>\",\n      \"field\": \"<string>\",\n      \"oldValue\": \"<string>\",\n      \"newValue\": \"<string>\",\n      \"changedBy\": \"<string>\",\n      \"changedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:47:43.000Z",
+                  "updatedAt": "2026-07-28T02:47:43.000Z",
+                  "uid": "35240-08275d69-5de7-4710-a915-a7d320d61472"
+                }
+              ],
+              "createdAt": "2026-07-28T02:47:43.000Z",
+              "updatedAt": "2026-07-28T02:47:43.000Z",
+              "uid": "35240-2a8d95f6-0fac-4e59-a31f-0e7d0418ed22"
+            }
+          ],
+          "id": "6d20593f-eac1-426f-9938-2cbbf28c045f",
+          "createdAt": "2026-07-28T02:47:43.000Z",
+          "updatedAt": "2026-07-28T02:47:43.000Z",
+          "uid": "35240-6d20593f-eac1-426f-9938-2cbbf28c045f"
+        }
+      ],
+      "id": "2b7a33e1-6d76-4fcb-9b2e-497956203853",
+      "createdAt": "2026-07-28T02:47:43.000Z",
+      "updatedAt": "2026-07-28T02:47:43.000Z",
+      "uid": "35240-2b7a33e1-6d76-4fcb-9b2e-497956203853"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.rightsline.com/v4"
+    }
+  ]
+}

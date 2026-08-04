@@ -1,0 +1,274 @@
+{
+  "info": {
+    "_postman_id": "ad5408ad-4597-4066-bbda-847ca3ab2462",
+    "name": "Rightsline Availability Templates API",
+    "description": "The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.\n\nContact Support:\n Name: Rightsline API Documentation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:47:45.000Z",
+    "updatedAt": "2026-07-28T02:47:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ad5408ad-4597-4066-bbda-847ca3ab2462"
+  },
+  "item": [
+    {
+      "name": "templates",
+      "item": [
+        {
+          "name": "{entityType}",
+          "item": [
+            {
+              "name": "{templateId}",
+              "item": [
+                {
+                  "name": "Get Template",
+                  "id": "d6e09f66-e2c8-4c87-b249-a0f6997f6946",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/templates/:entityType/:templateId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "templates",
+                        ":entityType",
+                        ":templateId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a17d39bc-2483-4dc7-8bdf-7e4a07c73e4e",
+                          "key": "entityType",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        },
+                        {
+                          "id": "fa6532ed-2324-4492-8f27-fd107fefb266",
+                          "key": "templateId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a specific template by ID with parent/child relationships and party data."
+                  },
+                  "response": [
+                    {
+                      "id": "e8437121-225c-4c7d-8747-457bd5ebf879",
+                      "name": "Template detail",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/templates/:entityType/:templateId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "templates",
+                            ":entityType",
+                            ":templateId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "entityType"
+                            },
+                            {
+                              "key": "templateId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"entityType\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\"\n    }\n  ],\n  \"parentTemplateId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:47:45.000Z",
+                      "updatedAt": "2026-07-28T02:47:45.000Z",
+                      "uid": "35240-e8437121-225c-4c7d-8747-457bd5ebf879"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:47:45.000Z",
+                  "updatedAt": "2026-07-28T02:47:45.000Z",
+                  "uid": "35240-d6e09f66-e2c8-4c87-b249-a0f6997f6946"
+                }
+              ],
+              "id": "b8c51e84-3e24-4277-be41-3f084dcc4f6c",
+              "createdAt": "2026-07-28T02:47:45.000Z",
+              "updatedAt": "2026-07-28T02:47:45.000Z",
+              "uid": "35240-b8c51e84-3e24-4277-be41-3f084dcc4f6c"
+            },
+            {
+              "name": "List Templates",
+              "id": "fb73f837-1e57-43a9-9aa0-8ad38bc6a1fb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/templates/:entityType",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "templates",
+                    ":entityType"
+                  ],
+                  "variable": [
+                    {
+                      "id": "977e0eea-b3cb-48d4-b241-f0b049d1e8e5",
+                      "key": "entityType",
+                      "value": "<string>",
+                      "description": "(Required) Entity type (e.g., rights, royalties, contacts)"
+                    }
+                  ]
+                },
+                "description": "Retrieve draft templates for a given entity type."
+              },
+              "response": [
+                {
+                  "id": "67543c78-02d9-4b7e-acbb-439d63a13282",
+                  "name": "Template list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/templates/:entityType",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "templates",
+                        ":entityType"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entityType"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"entityType\": \"<string>\",\n    \"fields\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\"\n      }\n    ],\n    \"parentTemplateId\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"entityType\": \"<string>\",\n    \"fields\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\"\n      }\n    ],\n    \"parentTemplateId\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T02:47:45.000Z",
+                  "updatedAt": "2026-07-28T02:47:45.000Z",
+                  "uid": "35240-67543c78-02d9-4b7e-acbb-439d63a13282"
+                }
+              ],
+              "createdAt": "2026-07-28T02:47:45.000Z",
+              "updatedAt": "2026-07-28T02:47:45.000Z",
+              "uid": "35240-fb73f837-1e57-43a9-9aa0-8ad38bc6a1fb"
+            }
+          ],
+          "id": "2c1f15ba-185c-4533-8b9b-ad1eba6f8467",
+          "createdAt": "2026-07-28T02:47:45.000Z",
+          "updatedAt": "2026-07-28T02:47:45.000Z",
+          "uid": "35240-2c1f15ba-185c-4533-8b9b-ad1eba6f8467"
+        }
+      ],
+      "id": "a45dc321-68ae-42b6-9ca6-8f8b7912317f",
+      "createdAt": "2026-07-28T02:47:45.000Z",
+      "updatedAt": "2026-07-28T02:47:45.000Z",
+      "uid": "35240-a45dc321-68ae-42b6-9ca6-8f8b7912317f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.rightsline.com/v4"
+    }
+  ]
+}

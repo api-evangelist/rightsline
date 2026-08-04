@@ -1,0 +1,297 @@
+{
+  "info": {
+    "_postman_id": "0b71c3be-ddea-4cc7-a56a-2f50f6b81f6a",
+    "name": "Rightsline Availability Lists API",
+    "description": "The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.\n\nContact Support:\n Name: Rightsline API Documentation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:47:42.000Z",
+    "updatedAt": "2026-07-28T02:47:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0b71c3be-ddea-4cc7-a56a-2f50f6b81f6a"
+  },
+  "item": [
+    {
+      "name": "lists",
+      "item": [
+        {
+          "name": "{listId}",
+          "item": [
+            {
+              "name": "values",
+              "item": [
+                {
+                  "name": "Add List Value",
+                  "id": "c6ca88e9-7b17-4f18-9cbc-d529669dd028",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"values\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/lists/:listId/values",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lists",
+                        ":listId",
+                        "values"
+                      ],
+                      "variable": [
+                        {
+                          "id": "653096a0-f0d6-400f-8d94-6470c358995b",
+                          "key": "listId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Add values to a master or pick list."
+                  },
+                  "response": [
+                    {
+                      "id": "ba298119-d30b-4d1a-956b-4d1c562fcf6f",
+                      "name": "Values added",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"values\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/lists/:listId/values",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "lists",
+                            ":listId",
+                            "values"
+                          ],
+                          "variable": [
+                            {
+                              "key": "listId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:47:42.000Z",
+                      "updatedAt": "2026-07-28T02:47:42.000Z",
+                      "uid": "35240-ba298119-d30b-4d1a-956b-4d1c562fcf6f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:47:42.000Z",
+                  "updatedAt": "2026-07-28T02:47:42.000Z",
+                  "uid": "35240-c6ca88e9-7b17-4f18-9cbc-d529669dd028"
+                },
+                {
+                  "name": "Remove List Value",
+                  "id": "61006cc7-b061-4257-94c3-ba0a8cbadcb0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"values\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/lists/:listId/values",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lists",
+                        ":listId",
+                        "values"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2a233c34-a664-4dbb-a27c-a6847d3113f9",
+                          "key": "listId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Remove values from a master or pick list."
+                  },
+                  "response": [
+                    {
+                      "id": "999dd2e1-3aed-4767-b1a4-1ce2512ce288",
+                      "name": "Values removed",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"values\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/lists/:listId/values",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "lists",
+                            ":listId",
+                            "values"
+                          ],
+                          "variable": [
+                            {
+                              "key": "listId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:47:42.000Z",
+                      "updatedAt": "2026-07-28T02:47:42.000Z",
+                      "uid": "35240-999dd2e1-3aed-4767-b1a4-1ce2512ce288"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:47:42.000Z",
+                  "updatedAt": "2026-07-28T02:47:42.000Z",
+                  "uid": "35240-61006cc7-b061-4257-94c3-ba0a8cbadcb0"
+                }
+              ],
+              "id": "d9c631d0-57fb-4178-86c6-0341a1b94fae",
+              "createdAt": "2026-07-28T02:47:42.000Z",
+              "updatedAt": "2026-07-28T02:47:42.000Z",
+              "uid": "35240-d9c631d0-57fb-4178-86c6-0341a1b94fae"
+            }
+          ],
+          "id": "835822eb-98e5-42ed-a412-fe1921f2eb55",
+          "createdAt": "2026-07-28T02:47:42.000Z",
+          "updatedAt": "2026-07-28T02:47:42.000Z",
+          "uid": "35240-835822eb-98e5-42ed-a412-fe1921f2eb55"
+        }
+      ],
+      "id": "d037d100-bdbb-47a5-99c5-9a28fc72516d",
+      "createdAt": "2026-07-28T02:47:42.000Z",
+      "updatedAt": "2026-07-28T02:47:42.000Z",
+      "uid": "35240-d037d100-bdbb-47a5-99c5-9a28fc72516d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.rightsline.com/v4"
+    }
+  ]
+}

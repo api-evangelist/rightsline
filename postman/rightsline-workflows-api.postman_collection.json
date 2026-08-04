@@ -1,0 +1,185 @@
+{
+  "info": {
+    "_postman_id": "b3046ef3-f9cb-47d3-8c5c-e7f4e57623bd",
+    "name": "Rightsline Availability Workflows API",
+    "description": "The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.\n\nContact Support:\n Name: Rightsline API Documentation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:47:45.000Z",
+    "updatedAt": "2026-07-28T02:47:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b3046ef3-f9cb-47d3-8c5c-e7f4e57623bd"
+  },
+  "item": [
+    {
+      "name": "workflows",
+      "item": [
+        {
+          "name": "{workflowId}",
+          "item": [
+            {
+              "name": "actions",
+              "item": [
+                {
+                  "name": "Execute Workflow Action",
+                  "id": "8caf056d-1b60-4c21-a0fd-07a379bf5eec",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"recordIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actionData\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workflows/:workflowId/actions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workflows",
+                        ":workflowId",
+                        "actions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c4d5280e-0e95-4a25-b03c-ce03504c2ce8",
+                          "key": "workflowId",
+                          "value": "<string>",
+                          "description": "(Required) Workflow identifier"
+                        }
+                      ]
+                    },
+                    "description": "Executes a workflow action on up to 100 records, including document generation and delivery request automation."
+                  },
+                  "response": [
+                    {
+                      "id": "402ab52e-cb71-48f7-a577-2f06780568e6",
+                      "name": "Workflow action executed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recordIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actionData\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workflows/:workflowId/actions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workflows",
+                            ":workflowId",
+                            "actions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workflowId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:47:46.000Z",
+                      "updatedAt": "2026-07-28T02:47:46.000Z",
+                      "uid": "35240-402ab52e-cb71-48f7-a577-2f06780568e6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:47:46.000Z",
+                  "updatedAt": "2026-07-28T02:47:46.000Z",
+                  "uid": "35240-8caf056d-1b60-4c21-a0fd-07a379bf5eec"
+                }
+              ],
+              "id": "1a58cf2b-453e-412d-823a-18c95d1bc755",
+              "createdAt": "2026-07-28T02:47:46.000Z",
+              "updatedAt": "2026-07-28T02:47:46.000Z",
+              "uid": "35240-1a58cf2b-453e-412d-823a-18c95d1bc755"
+            }
+          ],
+          "id": "73a5c09a-2768-4919-8666-32aea940ee35",
+          "createdAt": "2026-07-28T02:47:46.000Z",
+          "updatedAt": "2026-07-28T02:47:46.000Z",
+          "uid": "35240-73a5c09a-2768-4919-8666-32aea940ee35"
+        }
+      ],
+      "id": "bfeb429f-fbff-45ed-9b70-6356f4510f48",
+      "createdAt": "2026-07-28T02:47:46.000Z",
+      "updatedAt": "2026-07-28T02:47:46.000Z",
+      "uid": "35240-bfeb429f-fbff-45ed-9b70-6356f4510f48"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.rightsline.com/v4"
+    }
+  ]
+}

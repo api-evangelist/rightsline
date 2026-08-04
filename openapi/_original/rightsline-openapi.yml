@@ -1,0 +1,791 @@
+openapi: 3.0.3
+info:
+  title: Rightsline API
+  description: >-
+    The Rightsline API is organized around a REST architecture with predictable,
+    resource-oriented URLs and HTTP response codes to indicate errors. It enables
+    real-time integrations for rights management, royalty calculations, availability
+    checking, and workflow automation for media and entertainment companies.
+    Supports bulk operations of up to 100 records per request.
+  version: 'v4'
+  contact:
+    name: Rightsline API Documentation
+    url: https://api-docs.rightsline.com/
+  termsOfService: https://www.rightsline.com/terms-of-service/
+servers:
+  - url: https://app.rightsline.com/v4
+    description: US Production
+  - url: https://app.rightsline.eu/v4
+    description: EU Production
+tags:
+  - name: Rights
+    description: Rights and license management
+  - name: Royalties
+    description: Royalty and revenue management
+  - name: Availability
+    description: Content availability and windowing
+  - name: Contacts
+    description: Contact and company management
+  - name: Catalog
+    description: Content catalog and product management
+  - name: Workflows
+    description: Workflow automation and actions
+  - name: Templates
+    description: Template configuration
+  - name: Lists
+    description: Master and pick list management
+paths:
+  /rights:
+    get:
+      operationId: listRights
+      summary: List Rights
+      description: >-
+        Returns a list of rights records. Supports filtering and pagination.
+        Returns up to 100 records per request.
+      tags:
+        - Rights
+      parameters:
+        - name: limit
+          in: query
+          description: Number of records to return (max 100)
+          schema:
+            type: integer
+            default: 25
+            maximum: 100
+        - name: offset
+          in: query
+          description: Offset for pagination
+          schema:
+            type: integer
+            default: 0
+        - name: modifiedAfter
+          in: query
+          description: Filter records modified after this date (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+      security:
+        - ApiKey: []
+      responses:
+        '200':
+          description: List of rights records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RightsListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createRight
+      summary: Create Right
+      description: Creates a new rights record. Supports bulk creation of up to 100 records.
+      tags:
+        - Rights
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RightCreate'
+      responses:
+        '201':
+          description: Right created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Right'
+        '400':
+          description: Bad request
+  /rights/{id}:
+    get:
+      operationId: getRight
+      summary: Get Right
+      description: Returns a specific rights record by ID.
+      tags:
+        - Rights
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Rights record ID
+          schema:
+            type: string
+      security:
+        - ApiKey: []
+      responses:
+        '200':
+          description: Rights record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Right'
+        '404':
+          description: Not found
+    put:
+      operationId: updateRight
+      summary: Update Right
+      description: Updates an existing rights record.
+      tags:
+        - Rights
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RightCreate'
+      responses:
+        '200':
+          description: Updated right
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Right'
+    delete:
+      operationId: deleteRight
+      summary: Delete Right
+      description: Deletes a rights record.
+      tags:
+        - Rights
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      security:
+        - ApiKey: []
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Not found
+  /availability:
+    get:
+      operationId: checkAvailability
+      summary: Check Availability
+      description: >-
+        Validates content availability for scheduling, sales, and publishing
+        workflows. Checks rights windows for a given territory, platform,
+        and time period.
+      tags:
+        - Availability
+      parameters:
+        - name: contentId
+          in: query
+          required: true
+          description: Content identifier
+          schema:
+            type: string
+        - name: territory
+          in: query
+          description: Territory code (ISO 3166-1 alpha-2)
+          schema:
+            type: string
+        - name: platform
+          in: query
+          description: Distribution platform
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          description: Start date for availability window check
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: End date for availability window check
+          schema:
+            type: string
+            format: date
+      security:
+        - ApiKey: []
+      responses:
+        '200':
+          description: Availability result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailabilityResult'
+  /royalties:
+    get:
+      operationId: listRoyalties
+      summary: List Royalties
+      description: Returns a list of royalty records.
+      tags:
+        - Royalties
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+            maximum: 100
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      security:
+        - ApiKey: []
+      responses:
+        '200':
+          description: Royalty records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoyaltiesListResponse'
+    post:
+      operationId: createRoyalty
+      summary: Create Royalty
+      description: Creates a new royalty record. Supports bulk creation of up to 100 records.
+      tags:
+        - Royalties
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoyaltyCreate'
+      responses:
+        '201':
+          description: Royalty created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Royalty'
+  /contacts:
+    get:
+      operationId: listContacts
+      summary: List Contacts
+      description: Returns a list of contact records for master data management.
+      tags:
+        - Contacts
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      security:
+        - ApiKey: []
+      responses:
+        '200':
+          description: Contact records
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Contact'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      operationId: createContact
+      summary: Create Contact
+      description: Creates a new contact record.
+      tags:
+        - Contacts
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactCreate'
+      responses:
+        '201':
+          description: Contact created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+  /catalog:
+    get:
+      operationId: listCatalog
+      summary: List Catalog
+      description: Returns a list of product catalog entries.
+      tags:
+        - Catalog
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      security:
+        - ApiKey: []
+      responses:
+        '200':
+          description: Catalog entries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CatalogEntry'
+  /workflows/{workflowId}/actions:
+    post:
+      operationId: executeWorkflowAction
+      summary: Execute Workflow Action
+      description: >-
+        Executes a workflow action on up to 100 records, including
+        document generation and delivery request automation.
+      tags:
+        - Workflows
+      parameters:
+        - name: workflowId
+          in: path
+          required: true
+          description: Workflow identifier
+          schema:
+            type: string
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recordIds:
+                  type: array
+                  description: List of record IDs (max 100)
+                  items:
+                    type: string
+                  maxItems: 100
+                actionData:
+                  type: object
+                  description: Additional action parameters
+      responses:
+        '200':
+          description: Workflow action executed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+  /templates/{entityType}:
+    get:
+      operationId: listTemplates
+      summary: List Templates
+      description: Retrieve draft templates for a given entity type.
+      tags:
+        - Templates
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          description: Entity type (e.g., rights, royalties, contacts)
+          schema:
+            type: string
+      security:
+        - ApiKey: []
+      responses:
+        '200':
+          description: Template list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+  /templates/{entityType}/{templateId}:
+    get:
+      operationId: getTemplate
+      summary: Get Template
+      description: Retrieve a specific template by ID with parent/child relationships and party data.
+      tags:
+        - Templates
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: templateId
+          in: path
+          required: true
+          schema:
+            type: string
+      security:
+        - ApiKey: []
+      responses:
+        '200':
+          description: Template detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+  /lists/{listId}/values:
+    post:
+      operationId: addListValue
+      summary: Add List Value
+      description: Add values to a master or pick list.
+      tags:
+        - Lists
+      parameters:
+        - name: listId
+          in: path
+          required: true
+          schema:
+            type: string
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Values added
+    delete:
+      operationId: removeListValue
+      summary: Remove List Value
+      description: Remove values from a master or pick list.
+      tags:
+        - Lists
+      parameters:
+        - name: listId
+          in: path
+          required: true
+          schema:
+            type: string
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '204':
+          description: Values removed
+  /audit/{recordId}:
+    get:
+      operationId: getAuditTrail
+      summary: Get Audit Trail
+      description: Retrieve historical change logs for any record including specific value modifications.
+      tags:
+        - Rights
+      parameters:
+        - name: recordId
+          in: path
+          required: true
+          description: Record ID to retrieve audit history for
+          schema:
+            type: string
+      security:
+        - ApiKey: []
+      responses:
+        '200':
+          description: Audit trail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AuditEntry'
+components:
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Bearer token obtained by exchanging Company API Key + Access Key +
+        Secret Access Key. Generate credentials in app.rightsline.com Profile > API Access.
+  schemas:
+    Right:
+      type: object
+      description: A rights record representing a license or rights grant
+      properties:
+        id:
+          type: string
+          description: Unique rights record identifier
+        contentId:
+          type: string
+          description: Associated content/catalog ID
+        licensor:
+          type: string
+          description: Rights grantor
+        licensee:
+          type: string
+          description: Rights recipient
+        territory:
+          type: string
+          description: Territory/region for rights grant
+        platform:
+          type: string
+          description: Distribution platform
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [Active, Expired, Pending, Terminated]
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+    RightCreate:
+      type: object
+      required:
+        - contentId
+        - territory
+      properties:
+        contentId:
+          type: string
+        licensor:
+          type: string
+        licensee:
+          type: string
+        territory:
+          type: string
+        platform:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+    RightsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Right'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Royalty:
+      type: object
+      description: A royalty record for revenue tracking
+      properties:
+        id:
+          type: string
+        contentId:
+          type: string
+        type:
+          type: string
+          enum: [Revenue, Sales, Usage]
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        period:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [Pending, Approved, Paid]
+        createdAt:
+          type: string
+          format: date-time
+    RoyaltyCreate:
+      type: object
+      properties:
+        contentId:
+          type: string
+        type:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        period:
+          type: string
+          format: date
+    RoyaltiesListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Royalty'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    AvailabilityResult:
+      type: object
+      description: Content availability check result
+      properties:
+        contentId:
+          type: string
+        available:
+          type: boolean
+        territory:
+          type: string
+        platform:
+          type: string
+        windows:
+          type: array
+          description: Rights windows applicable for the query
+          items:
+            type: object
+            properties:
+              startDate:
+                type: string
+                format: date
+              endDate:
+                type: string
+                format: date
+              platform:
+                type: string
+              exclusive:
+                type: boolean
+    Contact:
+      type: object
+      description: A contact or company record
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Individual, Company]
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    ContactCreate:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+    CatalogEntry:
+      type: object
+      description: A product catalog entry
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    Template:
+      type: object
+      description: A rights or royalty template
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        entityType:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              required:
+                type: boolean
+        parentTemplateId:
+          type: string
+    AuditEntry:
+      type: object
+      description: An audit trail entry for record changes
+      properties:
+        id:
+          type: string
+        recordId:
+          type: string
+        field:
+          type: string
+        oldValue:
+          type: string
+        newValue:
+          type: string
+        changedBy:
+          type: string
+        changedAt:
+          type: string
+          format: date-time
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer

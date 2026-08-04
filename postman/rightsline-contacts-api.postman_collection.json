@@ -1,0 +1,263 @@
+{
+  "info": {
+    "_postman_id": "e0638fb1-d783-4803-a8b1-d38b2e6630de",
+    "name": "Rightsline Availability Contacts API",
+    "description": "The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.\n\nContact Support:\n Name: Rightsline API Documentation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:47:41.000Z",
+    "updatedAt": "2026-07-28T02:47:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e0638fb1-d783-4803-a8b1-d38b2e6630de"
+  },
+  "item": [
+    {
+      "name": "contacts",
+      "item": [
+        {
+          "name": "List Contacts",
+          "id": "80a286a9-f435-4c3b-93b2-ca1f69561402",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/contacts?limit=25&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "25"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Returns a list of contact records for master data management."
+          },
+          "response": [
+            {
+              "id": "e2f19499-b269-4fc8-8bd2-de6410b1fa93",
+              "name": "Contact records",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts?limit=25&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contacts"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"Individual\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"Individual\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:41.000Z",
+              "updatedAt": "2026-07-28T02:47:41.000Z",
+              "uid": "35240-e2f19499-b269-4fc8-8bd2-de6410b1fa93"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:41.000Z",
+          "updatedAt": "2026-07-28T02:47:41.000Z",
+          "uid": "35240-80a286a9-f435-4c3b-93b2-ca1f69561402"
+        },
+        {
+          "name": "Create Contact",
+          "id": "e462cc3b-fafa-4087-b3cf-2baa67c804f5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contacts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts"
+              ]
+            },
+            "description": "Creates a new contact record."
+          },
+          "response": [
+            {
+              "id": "b93b5fa1-2625-402f-889a-459dc384d269",
+              "name": "Contact created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contacts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"Company\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T02:47:41.000Z",
+              "updatedAt": "2026-07-28T02:47:41.000Z",
+              "uid": "35240-b93b5fa1-2625-402f-889a-459dc384d269"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:41.000Z",
+          "updatedAt": "2026-07-28T02:47:41.000Z",
+          "uid": "35240-e462cc3b-fafa-4087-b3cf-2baa67c804f5"
+        }
+      ],
+      "id": "ba1f4685-5352-4662-9e4c-e532a04f9c6d",
+      "createdAt": "2026-07-28T02:47:41.000Z",
+      "updatedAt": "2026-07-28T02:47:41.000Z",
+      "uid": "35240-ba1f4685-5352-4662-9e4c-e532a04f9c6d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.rightsline.com/v4"
+    }
+  ]
+}
