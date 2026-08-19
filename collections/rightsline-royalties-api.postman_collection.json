@@ -1,0 +1,261 @@
+{
+  "item": [
+    {
+      "id": "eb230264-269c-42c4-a2d9-903d79113f28",
+      "name": "Royalties",
+      "description": {
+        "content": "Royalty and revenue management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "921d3f64-29b5-481e-b875-30c525b17f83",
+          "name": "List Royalties",
+          "request": {
+            "name": "List Royalties",
+            "description": {
+              "content": "Returns a list of royalty records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "royalties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ec971fe3-f66b-4f1b-8c43-56c78f995132",
+              "name": "Royalty records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "royalties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"contentId\": \"string\",\n      \"type\": \"Sales\",\n      \"amount\": 1258.4081871813235,\n      \"currency\": \"string\",\n      \"period\": \"1983-05-17\",\n      \"status\": \"Pending\",\n      \"createdAt\": \"2007-06-05T01:57:58.004Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"contentId\": \"string\",\n      \"type\": \"Sales\",\n      \"amount\": 6139.38910726831,\n      \"currency\": \"string\",\n      \"period\": \"2014-11-28\",\n      \"status\": \"Paid\",\n      \"createdAt\": \"2013-06-28T11:58:45.775Z\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": 5491,\n    \"limit\": 4430,\n    \"offset\": 6824\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0040dab-3d3a-4d1e-962a-7a37e4c8cf45",
+          "name": "Create Royalty",
+          "request": {
+            "name": "Create Royalty",
+            "description": {
+              "content": "Creates a new royalty record. Supports bulk creation of up to 100 records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "royalties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contentId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"period\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1e7e11d-af71-493e-ad08-60f0b150b063",
+              "name": "Royalty created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "royalties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"period\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"contentId\": \"string\",\n  \"type\": \"Usage\",\n  \"amount\": 2981.0924209705713,\n  \"currency\": \"string\",\n  \"period\": \"1988-04-25\",\n  \"status\": \"Approved\",\n  \"createdAt\": \"1974-11-28T03:09:09.607Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.rightsline.com/v4",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "70190975-5eea-465f-b950-cd8fcc20cf45",
+    "name": "Rightsline Availability Royalties API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.\n\nContact Support:\n Name: Rightsline API Documentation",
+      "type": "text/plain"
+    }
+  }
+}

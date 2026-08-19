@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rightsline Availability Rights API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Rights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.rightsline.com/v4/rights",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "modifiedAfter",
+                "value": "",
+                "type": "query",
+                "description": "Filter records modified after this date (ISO 8601)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of rights records. Supports filtering and pagination. Returns up to 100 records per request."
+        },
+        {
+          "info": {
+            "name": "Create Right",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.rightsline.com/v4/rights",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new rights record. Supports bulk creation of up to 100 records."
+        },
+        {
+          "info": {
+            "name": "Get Right",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.rightsline.com/v4/rights/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Rights record ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a specific rights record by ID."
+        },
+        {
+          "info": {
+            "name": "Update Right",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.rightsline.com/v4/rights/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing rights record."
+        },
+        {
+          "info": {
+            "name": "Delete Right",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.rightsline.com/v4/rights/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a rights record."
+        },
+        {
+          "info": {
+            "name": "Get Audit Trail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.rightsline.com/v4/audit/:recordId",
+            "params": [
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "Record ID to retrieve audit history for"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve historical change logs for any record including specific value modifications."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

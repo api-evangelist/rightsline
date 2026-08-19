@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rightsline Availability API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Availability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check Availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.rightsline.com/v4/availability",
+            "params": [
+              {
+                "name": "contentId",
+                "value": "",
+                "type": "query",
+                "description": "Content identifier"
+              },
+              {
+                "name": "territory",
+                "value": "",
+                "type": "query",
+                "description": "Territory code (ISO 3166-1 alpha-2)"
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "Distribution platform"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date for availability window check"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date for availability window check"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Validates content availability for scheduling, sales, and publishing workflows. Checks rights windows for a given territory, platform, and time period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

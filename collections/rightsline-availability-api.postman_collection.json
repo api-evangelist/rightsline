@@ -1,0 +1,178 @@
+{
+  "item": [
+    {
+      "id": "2d2eb925-97dd-47e7-af9d-3962f36a8a13",
+      "name": "Availability",
+      "description": {
+        "content": "Content availability and windowing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f12d7ff2-8675-42f3-a76f-718dd9c27887",
+          "name": "Check Availability",
+          "request": {
+            "name": "Check Availability",
+            "description": {
+              "content": "Validates content availability for scheduling, sales, and publishing workflows. Checks rights windows for a given territory, platform, and time period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "availability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "contentId",
+                  "value": "<string>",
+                  "description": "(Required) Content identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "territory",
+                  "value": "<string>",
+                  "description": "Territory code (ISO 3166-1 alpha-2)"
+                },
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "Distribution platform"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Start date for availability window check"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "End date for availability window check"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5bda8c3e-72db-464e-b4dc-284fa8fdae44",
+              "name": "Availability result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "territory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contentId\": \"string\",\n  \"available\": false,\n  \"territory\": \"string\",\n  \"platform\": \"string\",\n  \"windows\": [\n    {\n      \"startDate\": \"2026-01-09\",\n      \"endDate\": \"1951-05-15\",\n      \"platform\": \"string\",\n      \"exclusive\": true\n    },\n    {\n      \"startDate\": \"2006-01-12\",\n      \"endDate\": \"1991-06-14\",\n      \"platform\": \"string\",\n      \"exclusive\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.rightsline.com/v4",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d0aea3e2-9304-496b-95e7-a90803096e49",
+    "name": "Rightsline Availability API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.\n\nContact Support:\n Name: Rightsline API Documentation",
+      "type": "text/plain"
+    }
+  }
+}

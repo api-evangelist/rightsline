@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rightsline Availability Royalties API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Royalties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Royalties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.rightsline.com/v4/royalties",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of royalty records."
+        },
+        {
+          "info": {
+            "name": "Create Royalty",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.rightsline.com/v4/royalties",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new royalty record. Supports bulk creation of up to 100 records."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

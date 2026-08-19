@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rightsline Availability Workflows API",
+    "version": "v4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute Workflow Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.rightsline.com/v4/workflows/:workflowId/actions",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Executes a workflow action on up to 100 records, including document generation and delivery request automation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
