@@ -104,6 +104,8 @@ apis:
   humanURL: https://api-docs.rightsline.com/
   baseURL: https://app.rightsline.com/v4
   tags:
+  - List
+  tags_raw:
   - Lists
   properties:
   - type: OpenAPI
