@@ -163,6 +163,9 @@ apis:
   - type: OpenAPI
     url: openapi/rightsline-workflows-api-openapi.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/rightsline-capability-edges.yml
+    name: Rightsline Business Capability Map
   - type: AgenticAccess
     url: agentic-access/rightsline-agentic-access.yml
   - type: DomainSecurity

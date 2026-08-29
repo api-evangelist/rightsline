@@ -1,0 +1,46 @@
+slug: rightsline
+provider: Rightsline
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Availability
+  spec_file: rightsline-availability-api-openapi.yml
+  capability_id: BC-3720.20
+  capability_id_l1: BC-3720
+  capability_name: Rights Inventory Management
+  confidence: 0.85
+  evidence: 'GET /availability  checkAvailability  Check Availability; schema AvailabilityResult; vendor:
+    "rights tracking, availability, royalty calculations"'
+  reason: On a rights-and-royalties platform for media, availability checking is the querying of held
+    rights inventory to determine whether a title can be exploited in a territory/window — exactly Rights
+    Inventory Management ('querying of availability for downstream programming').
+- tag: Rights
+  spec_file: rightsline-rights-api-openapi.yml
+  capability_id: BC-3720.20
+  capability_id_l1: BC-3720
+  capability_name: Rights Inventory Management
+  confidence: 0.85
+  evidence: GET /rights listRights 'List Rights'; schemas Right, RightCreate; vendor 'rights tracking,
+    availability, royalty calculations'
+  reason: CRUD over rights records in a media rights platform is stewardship of the rights inventory used
+    for availability checking.
+- tag: Royalties
+  spec_file: rightsline-royalties-api-openapi.yml
+  capability_id: BC-3720.60
+  capability_id_l1: BC-3720
+  capability_name: Royalty Inflow Management
+  confidence: 0.7
+  evidence: GET /royalties listRoyalties; schemas Royalty, RoyaltyCreate; vendor 'rights and royalties
+    software platform'
+  reason: Royalty records in a media rights platform map to royalty management; direction (inflow vs.
+    talent residuals) is not specified, so confidence is moderate.
