@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rightsline Availability Contacts API
+  title: Rightsline Contacts API
   description: The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.
   version: v4
   contact:
@@ -82,6 +82,20 @@ components:
           type: integer
         offset:
           type: integer
+    ContactCreate:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
     Contact:
       type: object
       description: A contact or company record
@@ -103,20 +117,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    ContactCreate:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        email:
-          type: string
-        phone:
-          type: string
   securitySchemes:
     ApiKey:
       type: apiKey

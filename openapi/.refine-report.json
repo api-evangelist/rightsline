@@ -1,14 +1,7 @@
 {
   "provider": "rightsline",
   "sources": [
-    "rightsline-availability-api-openapi.yml",
-    "rightsline-catalog-api-openapi.yml",
-    "rightsline-contacts-api-openapi.yml",
-    "rightsline-lists-api-openapi.yml",
-    "rightsline-rights-api-openapi.yml",
-    "rightsline-royalties-api-openapi.yml",
-    "rightsline-templates-api-openapi.yml",
-    "rightsline-workflows-api-openapi.yml"
+    "_original/rightsline-openapi.yml"
   ],
   "outputs": [
     "rightsline-availability-api-openapi.yml",
@@ -23,6 +16,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "rightsline-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "rightsline-availability-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rightsline-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rightsline-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rightsline-lists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rightsline-rights-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rightsline-royalties-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rightsline-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rightsline-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

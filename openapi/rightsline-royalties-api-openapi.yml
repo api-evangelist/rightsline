@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Rightsline Availability Royalties API
+  title: Rightsline Royalties API
   description: The Rightsline API is organized around a REST architecture with predictable, resource-oriented URLs and HTTP response codes to indicate errors. It enables real-time integrations for rights management, royalty calculations, availability checking, and workflow automation for media and entertainment companies. Supports bulk operations of up to 100 records per request.
   version: v4
   contact:
@@ -67,15 +67,15 @@ paths:
                 $ref: '#/components/schemas/Royalty'
 components:
   schemas:
-    Pagination:
+    RoyaltiesListResponse:
       type: object
       properties:
-        total:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Royalty'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Royalty:
       type: object
       description: A royalty record for revenue tracking
@@ -107,15 +107,15 @@ components:
         createdAt:
           type: string
           format: date-time
-    RoyaltiesListResponse:
+    Pagination:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Royalty'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
     RoyaltyCreate:
       type: object
       properties:
