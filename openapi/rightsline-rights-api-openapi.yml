@@ -178,6 +178,34 @@ paths:
                       $ref: '#/components/schemas/AuditEntry'
 components:
   schemas:
+    AuditEntry:
+      type: object
+      description: An audit trail entry for record changes
+      properties:
+        id:
+          type: string
+        recordId:
+          type: string
+        field:
+          type: string
+        oldValue:
+          type: string
+        newValue:
+          type: string
+        changedBy:
+          type: string
+        changedAt:
+          type: string
+          format: date-time
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
     RightCreate:
       type: object
       required:
@@ -200,15 +228,15 @@ components:
         endDate:
           type: string
           format: date
-    Pagination:
+    RightsListResponse:
       type: object
       properties:
-        total:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Right'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Right:
       type: object
       description: A rights record representing a license or rights grant
@@ -250,34 +278,6 @@ components:
         modifiedAt:
           type: string
           format: date-time
-    AuditEntry:
-      type: object
-      description: An audit trail entry for record changes
-      properties:
-        id:
-          type: string
-        recordId:
-          type: string
-        field:
-          type: string
-        oldValue:
-          type: string
-        newValue:
-          type: string
-        changedBy:
-          type: string
-        changedAt:
-          type: string
-          format: date-time
-    RightsListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Right'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     ApiKey:
       type: apiKey

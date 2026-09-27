@@ -73,15 +73,6 @@ paths:
                 $ref: '#/components/schemas/Contact'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
     ContactCreate:
       type: object
       required:
@@ -117,6 +108,15 @@ components:
         createdAt:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
   securitySchemes:
     ApiKey:
       type: apiKey

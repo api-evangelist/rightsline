@@ -67,15 +67,6 @@ paths:
                 $ref: '#/components/schemas/Royalty'
 components:
   schemas:
-    RoyaltiesListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Royalty'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Royalty:
       type: object
       description: A royalty record for revenue tracking
@@ -107,15 +98,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
     RoyaltyCreate:
       type: object
       properties:
@@ -130,6 +112,24 @@ components:
         period:
           type: string
           format: date
+    RoyaltiesListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Royalty'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
   securitySchemes:
     ApiKey:
       type: apiKey
