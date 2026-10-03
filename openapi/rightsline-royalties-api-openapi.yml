@@ -67,37 +67,6 @@ paths:
                 $ref: '#/components/schemas/Royalty'
 components:
   schemas:
-    Royalty:
-      type: object
-      description: A royalty record for revenue tracking
-      properties:
-        id:
-          type: string
-        contentId:
-          type: string
-        type:
-          type: string
-          enum:
-          - Revenue
-          - Sales
-          - Usage
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-        period:
-          type: string
-          format: date
-        status:
-          type: string
-          enum:
-          - Pending
-          - Approved
-          - Paid
-        createdAt:
-          type: string
-          format: date-time
     RoyaltyCreate:
       type: object
       properties:
@@ -130,6 +99,37 @@ components:
           type: integer
         offset:
           type: integer
+    Royalty:
+      type: object
+      description: A royalty record for revenue tracking
+      properties:
+        id:
+          type: string
+        contentId:
+          type: string
+        type:
+          type: string
+          enum:
+          - Revenue
+          - Sales
+          - Usage
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        period:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - Pending
+          - Approved
+          - Paid
+        createdAt:
+          type: string
+          format: date-time
   securitySchemes:
     ApiKey:
       type: apiKey
