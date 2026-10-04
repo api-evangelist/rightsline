@@ -81,15 +81,6 @@ components:
         period:
           type: string
           format: date
-    RoyaltiesListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Royalty'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       properties:
@@ -99,6 +90,15 @@ components:
           type: integer
         offset:
           type: integer
+    RoyaltiesListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Royalty'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Royalty:
       type: object
       description: A royalty record for revenue tracking

@@ -82,20 +82,6 @@ components:
           type: integer
         offset:
           type: integer
-    ContactCreate:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        email:
-          type: string
-        phone:
-          type: string
     Contact:
       type: object
       description: A contact or company record
@@ -117,6 +103,20 @@ components:
         createdAt:
           type: string
           format: date-time
+    ContactCreate:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
   securitySchemes:
     ApiKey:
       type: apiKey

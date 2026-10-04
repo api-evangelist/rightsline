@@ -187,6 +187,25 @@ components:
           type: integer
         offset:
           type: integer
+    AuditEntry:
+      type: object
+      description: An audit trail entry for record changes
+      properties:
+        id:
+          type: string
+        recordId:
+          type: string
+        field:
+          type: string
+        oldValue:
+          type: string
+        newValue:
+          type: string
+        changedBy:
+          type: string
+        changedAt:
+          type: string
+          format: date-time
     RightsListResponse:
       type: object
       properties:
@@ -257,25 +276,6 @@ components:
           type: string
           format: date-time
         modifiedAt:
-          type: string
-          format: date-time
-    AuditEntry:
-      type: object
-      description: An audit trail entry for record changes
-      properties:
-        id:
-          type: string
-        recordId:
-          type: string
-        field:
-          type: string
-        oldValue:
-          type: string
-        newValue:
-          type: string
-        changedBy:
-          type: string
-        changedAt:
           type: string
           format: date-time
   securitySchemes:
