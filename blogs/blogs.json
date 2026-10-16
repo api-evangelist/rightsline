@@ -2,6 +2,13 @@
   "repo": "rightsline",
   "feeds": [
     {
+      "source": "https://www.rightsline.com/resources/api-integration/",
+      "feed_url": "https://www.rightsline.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://api-docs.rightsline.com/getting-started",
       "feed_url": "https://api-docs.rightsline.com/getting-started",
       "title": "",
@@ -24,7 +31,7 @@
     }
   ],
   "post_count": 20,
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
   "feed_nature_note": "Whether these posts are the vendor publishing or its support community, decided on the URL path grammar of the saved posts -- not the hostname, which carries both on Khoros, and not author diversity, which flags large vendor blogs as forums. 'undetermined' means undetermined."
