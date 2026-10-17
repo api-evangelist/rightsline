@@ -67,6 +67,15 @@ paths:
                 $ref: '#/components/schemas/Royalty'
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
     RoyaltyCreate:
       type: object
       properties:
@@ -81,15 +90,6 @@ components:
         period:
           type: string
           format: date
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
     RoyaltiesListResponse:
       type: object
       properties:
